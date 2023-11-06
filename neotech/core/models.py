@@ -7,7 +7,7 @@ class TipeCourse(models.Model):
 class Course(models.Model):
     name=models.CharField(max_length=255)
     description=models.CharField(max_length=255)
-    tipe_course=models.ForeignKey()
+    tipe_course=models.ForeignKey(TipeCourse,on_delete=models.CASCADE)
 class Lesson(models.Model):
     name=models.CharField(max_length=255)
     description=models.CharField(max_length=255)
