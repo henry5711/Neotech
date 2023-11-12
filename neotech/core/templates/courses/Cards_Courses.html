@@ -12,31 +12,25 @@
             </div>
             <div class="courses-actives">
                 {% for curso in cursos %}
-                    <!-- Single Course -->
-                    <div class="properties pb-20">
-                        <div class="properties__card">
-                            <!-- Enlace a la página de detalle del curso -->
-                            <a href="{% url 'detalle_curso' tipo_curso=curso.type_course.name curso_id=curso.id %}">
-                                <div class="properties__img overlay1">
-                                    <img src="{{ curso.image.url }}" alt="{{ curso.name }}">
-                                </div>
-                            </a>
-                            <div class="properties__caption">
-                                <p>{{ curso.type_course.name }}</p>
-                                <!-- Enlace a la página de detalle del curso -->
-                                <h3><a href="{% url 'detalle_curso' tipo_curso=curso.type_course.name curso_id=curso.id %}">{{ curso.name }}</a></h3>
-                                <p>{{ curso.description }}</p>
-                                <!-- Otros detalles del curso -->
-
-                                <!-- Enlace para hacer el curso -->
-                                <a href="{% url 'hacer_curso' tipo_curso=curso.type_course.name curso_id=curso.id %}">Hacer Curso</a>
-                            </div>
+                <!-- Single -->
+                <div class="properties pb-20">
+                    <div class="properties__card">
+                        <div class="properties__img overlay1">
+                            <a href="#"><img src="{{ curso.image.url }}" alt=""></a>
+                        </div>
+                        <div class="properties__caption">
+                            <p>{{ curso.type_course.name }}</p>
+                            <h3><a href="#">{{ curso.name }}</a></h3>
+                            <p>{{ curso.description }}</p>
+                            <!-- ... otros detalles del curso ... -->
                         </div>
                     </div>
-                    <!-- Single Course -->
+                </div>
+                <!-- Single -->
                 {% endfor %}
             </div>
         </div>
     </div>
     <!-- Courses area End -->
-{% endblock %}
+
+{% endblock  %}

@@ -5,7 +5,6 @@
         {% for curso in cursos %}
           <div class="properties pb-20">
             <div class="properties__card">
-              <a href="{% url 'detalle_curso' tipo_curso=curso.type_course.name curso_id=curso.id %}">
                 <div class="properties__img overlay1">
                   <img src="{{ curso.image.url }}" alt="">
                 </div>
