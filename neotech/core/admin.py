@@ -25,7 +25,7 @@ class CourseAdmin(admin.ModelAdmin):
     
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
+    list_display = ('name', 'description', 'content_html')
     search_fields = ('name',)
     
 

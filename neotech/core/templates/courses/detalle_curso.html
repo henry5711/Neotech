@@ -1,10 +1,14 @@
 <h2>{{ curso.name }}</h2>
-  <p>Tipo de curso: {{ curso.type_course.name }}</p>
-  <p>{{ curso.description }}</p>
+<p>Tipo de curso: {{ curso.type_course.name }}</p>
+<p>{{ curso.description }}</p>
 
-  <h3>Lecciones:</h3>
-  <ul>
-    {% for leccion in lecciones %}
-      <li>{{ leccion.name }} - {{ leccion.description }}</li>
-    {% endfor %}
-  </ul>
+<h3>Lecciones:</h3>
+<ul>
+  {% for leccion in lecciones %}
+    <li>
+      <a href="{% url 'detalle_leccion' leccion_id=leccion.id %}">
+        {{ leccion.name }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

@@ -29,13 +29,10 @@ urlpatterns = [
     path('edit_profile/', views.EditProfile, name='edit_profile'),
     path('perfil/', views.Perfil, name='perfil'),
     path('cambiar_clave/', views.Cambiar_clave, name='cambiar_clave'),
-    path('cursos/', views.ver_cursos, name='cursos'),
-    path('cursos/hardware/', views.ver_cursos_hardware, name='ver_cursos_hardware'),
-    path('cursos/software/', views.ver_cursos_software, name='ver_cursos_software'),
-    path('cursos/programacion/', views.ver_cursos_programacion, name='ver_cursos_programacion'),
-    path('cursos/<str:tipo_curso>/<int:curso_id>/', views.detalle_curso, name='detalle_curso'),
-    path('hacer_curso/<str:tipo_curso>/<int:curso_id>/', views.hacer_curso, name='hacer_curso'),
-    path('cursos/<str:tipo_curso>/<int:curso_id>/lesson/<int:lesson_id>/', views.lesson_detail, name='lesson_detail'),
+    path('curso/', views.ver_cursos, name='cursos'),
+    path('cursos/', views.lista_cursos, name='lista_cursos'),
+    path('cursos/<int:curso_id>/', views.detalle_curso, name='detalle_curso'),
+    path('lecciones/<int:leccion_id>/', views.detalle_leccion, name='detalle_leccion'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

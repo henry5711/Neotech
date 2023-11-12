@@ -103,20 +103,15 @@ def ver_cursos_programacion(request):
     cursos_programacion = Course.objects.filter(type_course__name='programacion')
     return render(request, 'courses/cursos_programacion.html', {'cursos': cursos_programacion})
 
-def detalle_curso(request, tipo_curso, curso_id):
+def lista_cursos(request):
+    cursos = Course.objects.all()
+    return render(request, 'courses/lista_cursos.html', {'cursos': cursos})
+
+def detalle_curso(request, curso_id):
     curso = get_object_or_404(Course, id=curso_id)
-    lecciones = curso.lesson_set.all()  # Obtiene todas las lecciones asociadas al curso
-    context = {'curso': curso, 'lecciones': lecciones, 'tipo_curso': tipo_curso}
-    
-    # Seleccionar la plantilla según el tipo de curso
-    template = f'courses/detalle_curso_{tipo_curso.lower()}.html'
-    
-    return render(request, template, context)
+    lecciones = curso.lesson_set.all()
+    return render(request, 'courses/detalle_curso.html', {'curso': curso, 'lecciones': lecciones})
 
-def hacer_curso(request, tipo_curso, curso_id):
-    curso = get_object_or_404(Course, type_course__name=tipo_curso, id=curso_id)
-    return render(request, 'courses/hacer_curso.html', {'curso': curso, 'tipo_curso': tipo_curso, 'curso_id': curso_id})
-
-def lesson_detail(request, lesson_id):
-    lesson = Lesson.objects.get(pk=lesson_id)
-    return render(request, 'courses/lesson_detail.html', {'lesson': lesson})
+def detalle_leccion(request, leccion_id):
+    leccion = get_object_or_404(Lesson, id=leccion_id)
+    return render(request, 'courses/detalle_leccion.html', {'leccion': leccion})

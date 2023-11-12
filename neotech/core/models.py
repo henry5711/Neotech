@@ -45,6 +45,7 @@ def __str__(self):
 class Lesson(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
+    content_html = models.TextField(blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     
 def __str__(self):
