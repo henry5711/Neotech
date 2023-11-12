@@ -6,7 +6,6 @@ from .forms import RegistrationForm, LoginForm, UserProfileForm
 from .models import Course, UserProfile, Lesson
 from .forms import ChangePasswordForm
 
-
 @login_required
 def EditProfile(request):
     # Obtener o crear el UserProfile asociado al usuario
@@ -16,6 +15,11 @@ def EditProfile(request):
         form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
 
         if form.is_valid():
+            # Verificar si el checkbox delete_profile_picture está seleccionado
+            if form.cleaned_data.get('delete_profile_picture'):
+                # Eliminar la foto de perfil
+                user_profile.profile_picture.delete()
+
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
@@ -28,7 +32,6 @@ def EditProfile(request):
         form = UserProfileForm(instance=user_profile)
 
     return render(request, 'UserEdit/Edit_profile.html', {'form': form})
-
 @login_required(login_url='/login/')
 def Cambiar_clave(request):
     if request.method == 'POST':
