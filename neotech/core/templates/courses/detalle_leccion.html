@@ -1,3 +1,15 @@
 <h2>{{ leccion.name }}</h2>
+<h2>{{ leccion.id }}</h2>
 <p>{{ leccion.description }}</p>
 <div>{{ leccion.content_html | safe }}</div>
+
+<form method="get" action="{% url 'progress' %}">
+    <input type="hidden" name="user_id" value="{{ user.id }}">
+    <input type="hidden" name="lesson_id" value="{{ leccion.id }}">
+    <input type="hidden" name="course_id" value="{{ leccion.course_id }}">
+    {% if verify == 1 %}
+    <p>ya aprobaste esta leccion</p>
+    {% else %}
+    <button type="submit">Enviar progreso de la lección</button>
+    {% endif %}
+</form>

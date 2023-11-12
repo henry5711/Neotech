@@ -58,6 +58,7 @@ class ProgressUser(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     lesson=models.ForeignKey(Lesson,on_delete=models.CASCADE)
     progress=models.BooleanField(default=False)
+    course=models.ForeignKey(Course,on_delete=models.CASCADE,null=True)
     
 #--------------------------------------------------------------------------------------#
 #CourseUser - Curso Usuario#

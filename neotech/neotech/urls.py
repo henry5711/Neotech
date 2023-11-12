@@ -36,6 +36,7 @@ urlpatterns = [
     path('cursos/', views.lista_cursos, name='lista_cursos'),
     path('cursos/<int:curso_id>/', views.detalle_curso, name='detalle_curso'),
     path('lecciones/<int:leccion_id>/', views.detalle_leccion, name='detalle_leccion'),
+    path('lecciones/progress', views.progressLession, name='progress'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, LoginForm, UserProfileForm
-from .models import Course, UserProfile, Lesson
+from .models import Course, UserProfile, Lesson,ProgressUser
 from .forms import ChangePasswordForm
+from django.db import transaction
 
 @login_required
 def EditProfile(request):
@@ -111,10 +112,32 @@ def lista_cursos(request):
     return render(request, 'courses/lista_cursos.html', {'cursos': cursos})
 
 def detalle_curso(request, curso_id):
+    usuario = request.user
     curso = get_object_or_404(Course, id=curso_id)
     lecciones = curso.lesson_set.all()
-    return render(request, 'courses/detalle_curso.html', {'curso': curso, 'lecciones': lecciones})
+    progress=ProgressUser.objects.filter(course_id=curso_id,user_id=usuario.id).count()
+    
+    return render(request, 'courses/detalle_curso.html', {'curso': curso, 'lecciones': lecciones,'progress':progress})
 
 def detalle_leccion(request, leccion_id):
+    usuario = request.user
     leccion = get_object_or_404(Lesson, id=leccion_id)
-    return render(request, 'courses/detalle_leccion.html', {'leccion': leccion})
+    verifycateProgress=ProgressUser.objects.filter(lesson_id=leccion_id,user_id=usuario.id).count()
+    x=0
+    if verifycateProgress > 0:
+        x=1
+    return render(request, 'courses/detalle_leccion.html', {'leccion': leccion,'verify': x})
+
+def progressLession(request):
+    try:
+        progress=ProgressUser.objects.create(
+        user_id=request.GET.get('user_id'),
+        lesson_id=request.GET.get('lesson_id'), 
+        course_id=request.GET.get('course_id'),
+        progress=True,
+        ) 
+        progress.save();
+        return redirect('lista_cursos')
+    except Exception as e:
+        cursos = Course.objects.all()
+        return render(request, 'index.html', {'cursos': cursos})
