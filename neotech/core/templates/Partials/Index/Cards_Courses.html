@@ -1,0 +1,36 @@
+{% load static %}
+{% block Cards_Courses %}
+    <!-- Courses area start -->
+    <div class="courses-area section-padding40 fix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <h2>Cursos</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="courses-actives">
+                {% for curso in cursos %}
+                <!-- Single -->
+                <div class="properties pb-20">
+                    <div class="properties__card">
+                        <div class="properties__img overlay1">
+                            <a href="#"><img src="{{ curso.image.url }}" alt=""></a>
+                        </div>
+                        <div class="properties__caption">
+                            <p>{{ curso.type_course.name }}</p>
+                            <h3><a href="#">{{ curso.name }}</a></h3>
+                            <p>{{ curso.description }}</p>
+                            <!-- ... otros detalles del curso ... -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Single -->
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Courses area End -->
+
+{% endblock  %}

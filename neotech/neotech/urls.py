@@ -16,7 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.Index, name='index'),
+    path('login/', views.LoginView, name='login'),
+    path('register/', views.Register, name='register'),
+    path('logout/', views.CustomLogout, name='logout'),
+    path('edit_profile/', views.EditProfile, name='edit_profile'),
+    path('courses/', views.ver_cursos, name='courses'),
+    path('perfil/', views.Perfil, name='perfil'),
+    path('cambiar_clave/', views.Cambiar_clave, name='cambiar_clave'),
+    path('hardware/', views.cursos_hardware, name='cursos_hardware'),
+    path('programacion/', views.cursos_programacion, name='cursos_programacion'),
+    path('software/', views.cursos_software, name='cursos_software'),
+    path('lesson/<int:lesson_id>/', views.lesson_detail, name='lesson_detail'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

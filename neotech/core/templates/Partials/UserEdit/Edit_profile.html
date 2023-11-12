@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <title> Neotech | Editar perfil</title>
+
+    <!-- Head -->
+    {% block Head %}
+    {% include "Partials/Head.html" %}
+    {% endblock %}
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    {% block Preloader %}
+    {% include "Partials/Preloader.html" %}
+    {% endblock %}
+
+    <!-- HEADER O NAV_TOP -->
+    {% block Nav_top %}
+    {% include "Partials/Nav_top.html" %}
+    {% endblock %}
+
+    <!-- Contenido principal -->
+    <section class="slider-area slider-area2">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-11 col-md-12">
+                            <div class="hero__caption hero__caption2">
+                                <h1 text-align="center"> Perfil </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <main class="profile-container">
+        {% if user.userprofile.profile_picture %}
+        <img class="profile-picture" src="{{ user.userprofile.profile_picture.url }}">
+        {% endif %}
+        <div class="contenedor-datos">
+            <p class="profile-info">Nombre de usuario: {{ user.username }}</p>
+            <p class="profile-info">Correo electrónico: {{ user.email }}</p>
+        </div>
+
+        <h2 class="profile-heading">Editar perfil</h2>
+        <form class="edit-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-input pt-20">
+                <label for="{{ form.profile_picture.id_for_label }}">Imagen de perfil:</label>
+                {{ form.profile_picture }}
+            </div>
+            <label id="confirm-switch" for="{{ form.delete_profile_picture.id_for_label }}">
+                {{ form.delete_profile_picture }} Borrar foto de perfil
+            </label>
+            <div class="form-input pt-20">
+                <label for="{{ form.name.id_for_label }}">Nombre:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-input pt-20">
+                <label for="{{ form.last_name.id_for_label }}">Apellido:</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form-input pt-20">
+                <label for="{{ form.document.id_for_label }}">Cédula:</label>
+                {{ form.document }}
+            </div>
+            <div class="form-input pt-20">
+                <input class="submit-btn" type="submit" name="submit" value="Guardar cambios">
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer Start-->
+    {% block Footer %}
+    {% include "Partials/Footer.html" %}
+    {% endblock %}
+
+    <!-- Scripts-->
+    {% block Scripts %}
+    {% include "Partials/Scripts.html" %}
+    {% endblock %}
+
+</body>
+
+</html>

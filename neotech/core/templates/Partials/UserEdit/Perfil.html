@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <title>Neotech | Perfil</title>
+    
+    <!-- Head -->
+    {%block Head %}
+        {% include "Partials/Head.html" %}
+    {% endblock %}
+
+</head>
+
+<body>
+ <!-- Preloader -->
+    {% block Preloader %} 
+        {% include "Partials/Preloader.html" %}
+    {% endblock %}
+
+<!--HEADER O NAV_TOP -->
+    {%block Nav_top %}
+        {% include "Partials/Nav_top.html" %}
+    {% endblock %}
+
+<!-- Pagina principal - Contenido -->
+        <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">Our courses</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Services</a></li> 
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+        </section>
+        <main class="profile-container2">
+            {% if user.userprofile.profile_picture %}
+                <img class="profile-picture" src="{{ user.userprofile.profile_picture.url }}">
+            {% endif %}
+            <div class="contenedor-datos">
+                <p class="profile-info">Nombre de usuario: {{ user.username }}</p>
+                <p class="profile-info">Correo electrónico: {{ user.email }}</p>
+                <p class="profile-info">Nombre: {{ user.userprofile.name }}</p>
+                <p class="profile-info">Apellido: {{ user.userprofile.last_name }}</p>
+                <p class="profile-info">Cédula: {{ user.userprofile.document }}</p>
+            </div>
+                <div class="form-input pt-20">
+                    <a href="{% url 'edit_profile'%}"> Editar Perfil</a>
+                </div>
+        </main>
+
+<!-- Footer Start-->
+{%block Footer %}
+    {% include "Partials/Footer.html" %}
+{% endblock %}
+
+<!-- Scripts-->
+{%block Scripts %}
+    {% include "Partials/Scripts.html" %}
+{% endblock %}
+
+</body>
+</html>

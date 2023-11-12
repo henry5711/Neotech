@@ -1,0 +1,100 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <title>Neotech | Perfil</title>
+    
+    <!-- Head -->
+    {%block Head %}
+        {% include "Partials/Head.html" %}
+    {% endblock %}
+
+</head>
+
+<body>
+ <!-- Preloader -->
+    {% block Preloader %} 
+        {% include "Partials/Preloader.html" %}
+    {% endblock %}
+
+<!--HEADER O NAV_TOP -->
+    {%block Nav_top %}
+        {% include "Partials/Nav_top.html" %}
+    {% endblock %}
+
+<!-- Pagina principal - Contenido -->
+        <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">Our courses</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Services</a></li> 
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+        </section>
+
+<h2>Cambiar contraseña</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-input pt-20">
+        <label for="{{ form.current_password.id_for_label }}">Contraseña actual:</label>
+        <div class="password-input-container">
+            <input type="password" name="{{ form.current_password.name }}" class="form-control" id="{{ form.current_password.id_for_label }}" required placeholder="Contraseña actual">
+            <label class="show-password" onclick="togglePasswordVisibility('{{ form.current_password.id_for_label }}', 'password-icon-current')">
+                <i class="fas fa-eye password-icon" id="password-icon-current"></i>
+            </label>
+        </div>
+        {{ form.current_password.errors }}
+    </div>
+    
+    <div class="form-input pt-20">
+        <label for="{{ form.new_password.id_for_label }}">Nueva contraseña:</label>
+        <div class="password-input-container">
+            <input type="password" name="{{ form.new_password.name }}" class="form-control" id="{{ form.new_password.id_for_label }}" required placeholder="Nueva contraseña">
+            <label class="show-password" onclick="togglePasswordVisibility('{{ form.new_password.id_for_label }}', 'password-icon-new')">
+                <i class="fas fa-eye password-icon" id="password-icon-new"></i>
+            </label>
+        </div>
+        {{ form.new_password.errors }}
+    </div>
+    
+    <div class="form-input pt-20">
+        <label for="{{ form.confirm_new_password.id_for_label }}">Confirmar nueva contraseña:</label>
+        <div class="password-input-container">
+            <input type="password" name="{{ form.confirm_new_password.name }}" class="form-control" id="{{ form.confirm_new_password.id_for_label }}" required placeholder="Confirmar nueva contraseña">
+            <label class="show-password" onclick="togglePasswordVisibility('{{ form.confirm_new_password.id_for_label }}', 'password-icon-confirm-new')">
+                <i class="fas fa-eye password-icon" id="password-icon-confirm-new"></i>
+            </label>
+        </div>
+        {{ form.confirm_new_password.errors }}
+    </div>
+    <button type="submit">Guardar cambios</button>
+</form>
+
+<!-- Footer Start-->
+{%block Footer %}
+    {% include "Partials/Footer.html" %}
+{% endblock %}
+
+<!-- Scripts-->
+{%block Scripts %}
+    {% include "Partials/Scripts.html" %}
+{% endblock %}
+
+</body>
+</html>

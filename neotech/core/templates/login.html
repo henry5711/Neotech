@@ -1,0 +1,72 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <title>Neotech | Iniciar Sesión</title>
+        
+        <!-- Head -->
+        {%block Head %}
+            {% include "Partials/Head.html" %}
+        {% endblock %}
+    
+    </head>
+<body>
+    <!-- Preloader Start-->
+    {% block Preloader %} 
+        {% include "Partials/Preloader.html" %}
+    {% endblock %}
+
+    <main class="login-body" data-vide-bg="">
+        <!-- Login Admin -->
+        <form class="form-default" method="POST">
+            {% csrf_token %}
+                <div class="login-form">
+                    <!-- logo-login -->
+                    <div class="logo-login">
+                        <a href="{% url 'index'%}"><img src="{% static 'assets/img/logo/loder.png'%}" alt=""></a>
+                    </div>
+                    <h2>Inicia Sesión</h2>
+                    <div class="form-input">
+                        <label for="{{ form.username.id_for_label }}"></label>
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                    <!-- Campo de contraseña -->
+                    <div class="form-input">
+                        <label for="{{ form.password.id_for_label }}"></label>
+                        <div class="password-input-container">
+                            <input type="password" name="{{ form.password.name }}" class="form-control" id="{{ form.password.id_for_label }}" required placeholder="Contraseña">
+                            <label class="show-password" onclick="togglePasswordVisibility('{{ form.password.id_for_label }}', 'password-icon-login')">
+                                <i class="fas fa-eye password-icon" id="password-icon-login"></i>
+                            </label>
+                        </div>
+                        {{ form.password.errors }}
+                    </div>
+
+                        {% if form.errors %}
+                        <div class="errorlist">
+                        <li>
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </li>
+                        </div>
+                    {% endif %}
+                    <div class="form-input pt-20">
+                        <input type="submit" name="submit" value="Ingresar">
+                    </div>
+                    
+                    <a href=" {% url 'register'%}" class="registration">Registrarse</a>
+                </div>
+        </form>
+        <!-- /end login form -->
+    </main>
+
+
+    <!-- Scripts-->
+    {%block Scripts %}
+        {% include "Partials/Scripts.html" %}
+    {% endblock %}
+    
+    </body>
+</html>

@@ -1,0 +1,85 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <title>Neotech | Registro de usuarios</title>
+        
+        <!-- Head -->
+        {%block Head %}
+            {% include "Partials/Head.html" %}
+        {% endblock %}
+    
+    </head>
+<body>
+    <!-- Preloader Start-->
+
+    {% block Preloader %} 
+        {% include "Partials/Preloader.html" %}
+    {% endblock %}
+
+<!-- Register -->
+
+<main class="login-body" data-vide-bg="">
+    <!-- Login Admin -->
+    <form class="form-default" method="POST">
+        {% csrf_token %}
+        <div class="login-form">
+            <!-- logo-login -->
+            <div class="logo-login">
+                <a href=" {% url 'index'%}"><img src="{% static 'assets/img/logo/loder.png'%}" alt=""></a>
+            </div>
+            <h2>Crea tu Usuario</h2>
+            <div class="form-input">
+                <label for="{{ form.username.id_for_label }}"></label>
+                {{ form.username }}
+                <div class"errorlist">
+                {{ form.username.errors }}
+                </div>
+            </div>
+            <div class="form-input">
+                <label for="{{ form.email.id_for_label }}"></label>
+                {{ form.email }}
+                <div class"errorlist">
+                {{ form.email.errors }}
+                </div>
+            </div>
+            <!-- Primer campo de contraseña -->
+            <div class="form-input">
+                <label for="{{ form.password1.id_for_label }}"></label>
+                <div class="password-input-container">
+                    <input type="password" name="{{ form.password1.name }}" class="form-control" id="{{ form.password1.id_for_label }}" required placeholder="Contraseña">
+                    <label class="show-password" onclick="togglePasswordVisibility('{{ form.password1.id_for_label }}', 'password-icon-1')">
+                        <i class="fas fa-eye password-icon" id="password-icon-1"></i>
+                    </label>
+                </div>
+                {{ form.password1.errors }}
+            </div>
+
+            <!-- Segundo campo de contraseña -->
+            <div class="form-input">
+                <label for="{{ form.password2.id_for_label }}"></label>
+                <div class="password-input-container">
+                    <input type="password" name="{{ form.password2.name }}" class="form-control" id="{{ form.password2.id_for_label }}" required placeholder="Confirmar Contraseña">
+                    <label class="show-password" onclick="togglePasswordVisibility('{{ form.password2.id_for_label }}', 'password-icon-2')">
+                        <i class="fas fa-eye password-icon" id="password-icon-2"></i>
+                    </label>
+                </div>
+                {{ form.password2.errors }}
+            </div>
+            <div class="form-input pt-20">
+                <input type="submit" name="submit" value="Crear Cuenta">
+            </div>
+            <!-- Forget Password -->
+            <a href= "{% url 'login'%}" class="registration">Ingresar</a>
+        </div>
+    </form>
+    <!-- /end login form -->
+</main>
+
+    <!-- Scripts-->
+    {%block Scripts %}
+        {% include "Partials/Scripts.html" %}
+    {% endblock %}
+
+    </body>
+</html>
