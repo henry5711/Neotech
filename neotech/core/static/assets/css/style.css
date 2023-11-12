@@ -5110,7 +5110,7 @@ hr {
 }
 .breadcrumb a {
   color: #fff;
-  font-size: 15px;
+  font-size: 17px;
   text-transform: capitalize;
   line-height: 1;
   font-weight: 400;
@@ -5148,27 +5148,27 @@ hr {
   background: -moz-linear-gradient(
     top,
     #eae2fe 0%,
-    #a376ff 1%,
-    #ea68ff 98%,
-    #ec7dfe 99%,
+    #ffb089 1%,
+    #ff8f57 98%,
+    #e5804e 99%,
     #f3f3fa 99%,
     #f4f5fa 100%
   );
   background: -webkit-linear-gradient(
     top,
     #eae2fe 0%,
-    #a376ff 1%,
-    #ea68ff 98%,
-    #ec7dfe 99%,
+    #ffb089 1%,
+    #ff8f57 98%,
+    #e5804e 99%,
     #f3f3fa 99%,
     #f4f5fa 100%
   );
   background: linear-gradient(
     to bottom,
     #eae2fe 0%,
-    #a376ff 1%,
-    #ea68ff 98%,
-    #ec7dfe 99%,
+    #ffb089 1%,
+    #ff8f57 98%,
+    #e5804e 99%,
     #f3f3fa 99%,
     #f4f5fa 100%
   );
@@ -6246,6 +6246,7 @@ del {
     }
 }
 
+/* ESTILOS DEL OJO DE LA CONTRASEÑA*/
 .form-input {
   position: relative;
 }
@@ -6267,5 +6268,31 @@ del {
   transform: scaleY(-1);
 }
 
+/*INFO CURSOS*/
 
+.info-cursos{
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1100px;
+  display: grid;
+  place-items: center;
+  text-align: justify;
+}
 
+.info-cursos h1{
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.info-cursos p{
+line-height: 2.3
+}
+
+@media (max-width: 575px) { 
+  .info-cursos{
+      width: 300px;
+      padding: 15px 15px 5px 15px;
+      }
+
+    }

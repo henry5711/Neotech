@@ -1,0 +1,12 @@
+<h1>Haciendo el Curso: {{ tipo_curso }} - {{ curso_id }}</h1>
+
+  <!-- Contenido específico de "Hacer Curso" -->
+
+  <h2>Lecciones:</h2>
+  <ul>
+    {% for leccion in lecciones %}
+      <li>
+        <a href="{% url 'lesson_detail' lesson_id=leccion.id %}">{{ leccion.name }}</a>
+      </li>
+    {% endfor %}
+</ul>

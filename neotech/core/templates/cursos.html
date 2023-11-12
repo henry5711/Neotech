@@ -2,7 +2,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
-        <title>Neotech - Cursos</title>
+        <title>Neotech | Cursos</title>
         
         <!-- Head -->
         {%block Head %}
@@ -32,12 +32,11 @@
                         <div class="row">
                             <div class="col-xl-8 col-lg-11 col-md-12">
                                 <div class="hero__caption hero__caption2">
-                                    <h1 data-animation="bounceIn" data-delay="0.2s">Our courses</h1>
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">Nuestros Cursos</h1>
                                     <!-- breadcrumb Start-->
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Services</a></li> 
+                                            <li class="breadcrumb-item"><a>¿Listo para transformar tu trayectoria con nuestros cursos especializados?</a></li>
                                         </ol>
                                     </nav>
                                     <!-- breadcrumb End -->
@@ -49,9 +48,17 @@
             </div>
         </section>
         <!-- Courses area start -->
+        <div class="info-cursos">
+            <h1>Aprende con nuestros cursos</h1>
+            <p>Descubre un catálogo diverso de cursos diseñados para potenciar tus habilidades en informática.
+            Desde principiantes hasta niveles avanzados, cada curso aborda temas esenciales de software, 
+            hardware y programación. Con lecciones prácticas y enfoque en habilidades clave, 
+            nuestro contenido educativo te ofrece la oportunidad de aprender a tu propio ritmo. 
+            Domina las tecnologías del futuro y avanza en tu carrera con conocimientos sólidos. </p>
+        </div>    
                     <!-- Cards Courses-->
                     {%block Cards_Courses %}
-                    {% include "Partials/Index/Cards_Courses.html" %}
+                    {% include "courses/Cards_Courses.html" %}
                     {% endblock %}
     </main>
 

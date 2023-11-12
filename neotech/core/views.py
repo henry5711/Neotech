@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, LoginForm, UserProfileForm
@@ -27,7 +27,7 @@ def EditProfile(request):
     else:
         form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'Partials/UserEdit/Edit_profile.html', {'form': form})
+    return render(request, 'UserEdit/Edit_profile.html', {'form': form})
 
 @login_required(login_url='/login/')
 def Cambiar_clave(request):
@@ -38,7 +38,7 @@ def Cambiar_clave(request):
             return redirect('index')  # Cambia 'index' al nombre de tu vista principal
     else:
         form = ChangePasswordForm(request.user)
-    return render(request, 'Partials/UserEdit/Cambiar_clave.html', {'form': form})
+    return render(request, 'UserEdit/Cambiar_clave.html', {'form': form})
 
 def Register(request):
     if request.user.is_authenticated:
@@ -82,29 +82,40 @@ def CustomLogout(request):
     return redirect('login')  # Redirigir a la página de inicio después del cierre de sesión
 
 def Perfil(request):
-    return render(request, 'Partials/UserEdit/Perfil.html')
+    return render(request, 'UserEdit/Perfil.html')
 
 def ver_cursos(request):
     # Obtener todos los cursos de la base de datos
     cursos = Course.objects.all()
 
     # Pasa los cursos a la plantilla
-    return render(request, 'courses.html', {'cursos': cursos})
+    return render(request, 'cursos.html', {'cursos': cursos})
 
-def cursos_hardware(request):
-    cursos = Course.objects.filter(type_course__name='hardware')
-    context = {'cursos': cursos, 'tipo_curso': 'hardware'}
-    return render(request, 'hardware.html', context)
+def ver_cursos_hardware(request):
+    cursos_hardware = Course.objects.filter(type_course__name='hardware')
+    return render(request, 'courses/cursos_hardware.html', {'cursos': cursos_hardware})
 
-def cursos_programacion(request):
-    cursos = Course.objects.filter(type_course__name='programacion')
-    context = {'cursos': cursos, 'tipo_curso': 'programacion'}
-    return render(request, 'programacion.html', context)
+def ver_cursos_software(request):
+    cursos_software = Course.objects.filter(type_course__name='software')
+    return render(request, 'courses/cursos_software.html', {'cursos': cursos_software})
 
-def cursos_software(request):
-    cursos = Course.objects.filter(type_course__name='software')
-    context = {'cursos': cursos, 'tipo_curso': 'software'}
-    return render(request, '.html', context)
+def ver_cursos_programacion(request):
+    cursos_programacion = Course.objects.filter(type_course__name='programacion')
+    return render(request, 'courses/cursos_programacion.html', {'cursos': cursos_programacion})
+
+def detalle_curso(request, tipo_curso, curso_id):
+    curso = get_object_or_404(Course, id=curso_id)
+    lecciones = curso.lesson_set.all()  # Obtiene todas las lecciones asociadas al curso
+    context = {'curso': curso, 'lecciones': lecciones, 'tipo_curso': tipo_curso}
+    
+    # Seleccionar la plantilla según el tipo de curso
+    template = f'courses/detalle_curso_{tipo_curso.lower()}.html'
+    
+    return render(request, template, context)
+
+def hacer_curso(request, tipo_curso, curso_id):
+    curso = get_object_or_404(Course, type_course__name=tipo_curso, id=curso_id)
+    return render(request, 'courses/hacer_curso.html', {'curso': curso, 'tipo_curso': tipo_curso, 'curso_id': curso_id})
 
 def lesson_detail(request, lesson_id):
     lesson = Lesson.objects.get(pk=lesson_id)

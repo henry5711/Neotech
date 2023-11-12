@@ -1,0 +1,10 @@
+<h2>{{ curso.name }}</h2>
+  <p>Tipo de curso: {{ curso.type_course.name }}</p>
+  <p>{{ curso.description }}</p>
+
+  <h3>Lecciones:</h3>
+  <ul>
+    {% for leccion in lecciones %}
+      <li>{{ leccion.name }} - {{ leccion.description }}</li>
+    {% endfor %}
+  </ul>

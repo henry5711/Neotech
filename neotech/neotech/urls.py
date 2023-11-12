@@ -27,13 +27,15 @@ urlpatterns = [
     path('register/', views.Register, name='register'),
     path('logout/', views.CustomLogout, name='logout'),
     path('edit_profile/', views.EditProfile, name='edit_profile'),
-    path('courses/', views.ver_cursos, name='courses'),
     path('perfil/', views.Perfil, name='perfil'),
     path('cambiar_clave/', views.Cambiar_clave, name='cambiar_clave'),
-    path('hardware/', views.cursos_hardware, name='cursos_hardware'),
-    path('programacion/', views.cursos_programacion, name='cursos_programacion'),
-    path('software/', views.cursos_software, name='cursos_software'),
-    path('lesson/<int:lesson_id>/', views.lesson_detail, name='lesson_detail'),
+    path('cursos/', views.ver_cursos, name='cursos'),
+    path('cursos/hardware/', views.ver_cursos_hardware, name='ver_cursos_hardware'),
+    path('cursos/software/', views.ver_cursos_software, name='ver_cursos_software'),
+    path('cursos/programacion/', views.ver_cursos_programacion, name='ver_cursos_programacion'),
+    path('cursos/<str:tipo_curso>/<int:curso_id>/', views.detalle_curso, name='detalle_curso'),
+    path('hacer_curso/<str:tipo_curso>/<int:curso_id>/', views.hacer_curso, name='hacer_curso'),
+    path('cursos/<str:tipo_curso>/<int:curso_id>/lesson/<int:lesson_id>/', views.lesson_detail, name='lesson_detail'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

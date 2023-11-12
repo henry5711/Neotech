@@ -1,0 +1,42 @@
+{% load static %}
+{% block Cards_Courses %}
+    <!-- Courses area start -->
+    <div class="courses-area section-padding40 fix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <h2>Cursos</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="courses-actives">
+                {% for curso in cursos %}
+                    <!-- Single Course -->
+                    <div class="properties pb-20">
+                        <div class="properties__card">
+                            <!-- Enlace a la página de detalle del curso -->
+                            <a href="{% url 'detalle_curso' tipo_curso=curso.type_course.name curso_id=curso.id %}">
+                                <div class="properties__img overlay1">
+                                    <img src="{{ curso.image.url }}" alt="{{ curso.name }}">
+                                </div>
+                            </a>
+                            <div class="properties__caption">
+                                <p>{{ curso.type_course.name }}</p>
+                                <!-- Enlace a la página de detalle del curso -->
+                                <h3><a href="{% url 'detalle_curso' tipo_curso=curso.type_course.name curso_id=curso.id %}">{{ curso.name }}</a></h3>
+                                <p>{{ curso.description }}</p>
+                                <!-- Otros detalles del curso -->
+
+                                <!-- Enlace para hacer el curso -->
+                                <a href="{% url 'hacer_curso' tipo_curso=curso.type_course.name curso_id=curso.id %}">Hacer Curso</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Course -->
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Courses area End -->
+{% endblock %}
